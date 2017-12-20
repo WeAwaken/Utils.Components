@@ -20,7 +20,11 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>Alexi</Authors>
-    <PackageProjectUrl>http://www.github.com/awaken/Utils</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/WeAwaken/Utils.Components</PackageProjectUrl>
+    <Version>1.0.7</Version>
+    <AssemblyVersion>1.0.7</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageIconUrl>https://avatars1.githubusercontent.com/u/31270199?s=200&amp;v=4</PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

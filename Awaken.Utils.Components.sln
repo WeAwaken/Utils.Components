@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3725E966-E41
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A85E1F9C-9E36-4742-9079-67B3FB50852A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B06A3BFB-E9BB-441A-8184-0362120D0463}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Awaken.Utils.Widgets", "src\Awaken.Utils.Widgets\Awaken.Utils.Widgets.csproj", "{76BD35B4-1F0C-4688-A29C-7C3EA3AB0A6F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Awaken.Utils.Test", "src\Awaken.Utils.Test\Awaken.Utils.Test.csproj", "{EAF2F914-2503-41DB-A3BB-26893D66324A}"
