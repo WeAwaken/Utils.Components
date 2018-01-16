@@ -29,13 +29,19 @@ namespace Awaken.Utils.Widgets
             Message = message;
         }
 
+        /// <summary>
+        /// 错误
+        /// </summary>
         public string Error { get; set; }
 
+        /// <summary>
+        /// 错误原因描述
+        /// </summary>
         public string Message { get; set; }
 
         public override string ToString()
         {
-            return string.Format("{{error:'{0}',message:'{1}'}}",
+            return string.Format("{{error:'{0}', error_description:'{1}'}}",
                 Error,
                 Message);
         }

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description> 插件工具集合</Description>
-    <Copyright>2016@Awaken</Copyright>
+    <Copyright>2018@Awaken</Copyright>
     <AssemblyTitle>Awaken.Utils.Widgets</AssemblyTitle>
     <VersionPrefix>1.0.6</VersionPrefix>
     <TargetFramework>netstandard1.6</TargetFramework>
@@ -21,8 +21,8 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>Alexi</Authors>
     <PackageProjectUrl>https://github.com/WeAwaken/Utils.Components</PackageProjectUrl>
-    <Version>1.0.7</Version>
-    <AssemblyVersion>1.0.7</AssemblyVersion>
+    <Version>1.0.9</Version>
+    <AssemblyVersion>1.0.9.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <PackageIconUrl>https://avatars1.githubusercontent.com/u/31270199?s=200&amp;v=4</PackageIconUrl>
   </PropertyGroup>

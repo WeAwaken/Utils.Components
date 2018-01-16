@@ -5,13 +5,15 @@
     <Copyright>Awaken@2017</Copyright>
     <AssemblyTitle>Awaken.Utils.Test</AssemblyTitle>
     <VersionPrefix>1.0.1</VersionPrefix>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>Awaken.Utils.Test</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>Awaken.Utils.Test</PackageId>
     <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
