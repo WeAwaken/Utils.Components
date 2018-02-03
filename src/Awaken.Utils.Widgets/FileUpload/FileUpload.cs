@@ -51,7 +51,7 @@ namespace Awaken.Utils.Widgets
             string token = Auth.CreateUploadToken(_mac, jstr);
 
             FormUploader fu = new FormUploader();
-
+                        
             var result = fu.UploadStream(fileStream, fname, token);
 
             if (result.Code != 200) {
