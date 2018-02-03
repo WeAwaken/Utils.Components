@@ -69,6 +69,10 @@ namespace Awaken.Utils.Widgets
             [Description("Request Timeout")]
             RequestTimeout = 408,
 
+
+            [Description("Application Error")]
+            ApplicationError = 500,
+
             #region 自定义错误 HTTP STATUS CODE >=480
 
             /// <summary>
@@ -87,7 +91,9 @@ namespace Awaken.Utils.Widgets
             /// 482 预设计的错误 业务处理使用
             /// </summary>
             [Description("Predictive Error")]
-            Predict = 482
+            Predict = 482,
+
+            
 
             #endregion
         }       
