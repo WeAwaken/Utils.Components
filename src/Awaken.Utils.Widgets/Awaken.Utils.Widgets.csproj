@@ -5,10 +5,10 @@
     <Authors>AleXiao</Authors>
     <Company>Awaken</Company>
     <Description>Awaken.Utils.Widgets</Description>
-    <Version>1.1.4</Version>
+    <Version>1.1.5</Version>
     <Copyright>Awaken©2018</Copyright>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
     <PackageIconUrl>https://en.gravatar.com/userimage/14785596/11ec58522a97f465b4688015701032d1.png?size=200</PackageIconUrl>
     <PackageProjectUrl>https://github.com/WeAwaken/Utils.Components</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/WeAwaken/Utils.Components/blob/master/LICENSE</PackageLicenseUrl>

@@ -64,6 +64,12 @@ namespace Awaken.Utils.Widgets
             Forbidden = 403,
 
             /// <summary>
+            /// 404 资源不存在
+            /// </summary>
+            [Description("Resource Does Not Exist")]
+            NotFound = 404,
+
+            /// <summary>
             /// 408 请求超时
             /// </summary>
             [Description("Request Timeout")]
