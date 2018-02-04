@@ -5,7 +5,7 @@
 ### How to use:
 - 1: add to "appsettings.json" of project
 ``` 
-"Redis": "139.196.148.7:6379,allowAdmin=true,password=3W1e#r&f,abortConnect=false", //abortConnect=false
+"Redis": "127.0.0.1:6379,allowAdmin=true,password=***,abortConnect=false", //abortConnect=false
 ```
 - 2: add to Startup.cs > Methods ConfigureServices() , DI Singleton:"IRedisCache"
 ```
