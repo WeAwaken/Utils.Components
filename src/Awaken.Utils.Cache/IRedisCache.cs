@@ -14,10 +14,10 @@ namespace Awaken.Utils.Cache
         ConnectionMultiplexer Connection { get; }
 
         /// <summary>
-        /// 获取Redis IDatabase
+        /// 获取Redis IDatabase; Obtain an interactive connection to a database inside redis
         /// </summary>        
         /// <returns></returns>
-        IDatabase Database { get; }
+        IDatabase GetDatabase(int db = -1, object asyncState = null);
 
         /// <summary>
         /// 获取Redis Server [0]

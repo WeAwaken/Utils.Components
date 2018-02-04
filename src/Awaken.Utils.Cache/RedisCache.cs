@@ -47,14 +47,16 @@ namespace Awaken.Utils.Cache
         }
 
         /// <summary>
-        /// 获取Redis IDatabase
+        /// 获取IDatabase GetDatabase(asyncState: Stopwatch.StartNew());      
+        /// <para>
+        /// The object returned from GetDatabase is a cheap pass-thru object, and does not need to be stored. Note that redis supports multiple databases (although this is not supported on “cluster”); this can be optionally specified in the call to GetDatabase. Additionally, if you plan to make use of the asynchronous API and you require the Task.AsyncState to have a value, this can also be specified:
+        /// </para>
         /// </summary>        
         /// <returns></returns>
-        public IDatabase Database
-        {
-            get {
-                return Connection.GetDatabase();
-            }
+        public IDatabase GetDatabase(int db = -1, object asyncState = null)
+        {           
+            return Connection.GetDatabase(db, asyncState);
+            
         }
 
         /// <summary>
@@ -77,7 +79,7 @@ namespace Awaken.Utils.Cache
             //using (var muxer = Create())
             //{
                 //var db = Conn.GetDatabase();	
-            return await Database.StringSetAsync(key, value);
+            return await GetDatabase().StringSetAsync(key, value);
             //}
         }
 
@@ -96,7 +98,7 @@ namespace Awaken.Utils.Cache
             //{
             //var db = Conn.GetDatabase();
 
-            return await Database.StringSetAsync(key, valueJson);
+            return await GetDatabase().StringSetAsync(key, valueJson);
             //}
 
         }
@@ -113,7 +115,7 @@ namespace Awaken.Utils.Cache
             //{
                 //var db = Conn.GetDatabase();
 
-            return await Database.StringSetAsync(key, value, expiry);
+            return await GetDatabase().StringSetAsync(key, value, expiry);
             //}
         }
 
@@ -134,7 +136,7 @@ namespace Awaken.Utils.Cache
             //{
             //var db = muxer.GetDatabase();
 
-            return await Database.StringSetAsync(key, jsonValue, expiry);
+            return await GetDatabase().StringSetAsync(key, jsonValue, expiry);
             //}
         }
 
@@ -154,7 +156,7 @@ namespace Awaken.Utils.Cache
 
             //List<Task> tasks = new List<Task>();
 
-            var batch = Database.CreateBatch();
+            var batch = GetDatabase().CreateBatch();
 
             foreach (RedisKeyValue keyValue in keyValues)
             {
@@ -187,7 +189,7 @@ namespace Awaken.Utils.Cache
 
             //var tasks = new List<Task>();
 
-            var batch = Database.CreateBatch();
+            var batch = GetDatabase().CreateBatch();
 
             foreach (RedisKeyValue keyvalue in keyValues)
             {
@@ -215,7 +217,7 @@ namespace Awaken.Utils.Cache
             //{
                 //var db = muxer.GetDatabase();
 
-            return await Database.StringGetAsync(key);
+            return await GetDatabase().StringGetAsync(key);
             
             //}
         }
@@ -234,7 +236,7 @@ namespace Awaken.Utils.Cache
             //{
             //    var db = muxer.GetDatabase();
 
-			var jsonValue = await Database.StringGetAsync(key);                
+			var jsonValue = await GetDatabase().StringGetAsync(key);                
             //}
 
 			if (!jsonValue.HasValue||jsonValue.IsNullOrEmpty) return null;
@@ -256,7 +258,7 @@ namespace Awaken.Utils.Cache
             //         {
             //             var db = muxer.GetDatabase();
 
-            var redisValues = await Database.StringGetAsync(redisKeys);                
+            var redisValues = await GetDatabase().StringGetAsync(redisKeys);                
             //}
 
 			return redisValues.Where(p=>p.HasValue).Select(p =>p.ToString()).ToList();			
@@ -275,7 +277,7 @@ namespace Awaken.Utils.Cache
             //{
             //var db = muxer.GetDatabase();
 
-            RedisValue[] values = await Database.StringGetAsync(redisKeys);
+            RedisValue[] values = await GetDatabase().StringGetAsync(redisKeys);
 			//}
 
 			//var tasks = values.Where(p => p.HasValue).Select(p =>
@@ -305,9 +307,9 @@ namespace Awaken.Utils.Cache
 
 			//	var db = muxer.GetDatabase();
 
-			var keys = server.Keys(Database.Database, pattern: pattern, pageSize: pageSize,flags: CommandFlags.None);
+			var keys = server.Keys(GetDatabase().Database, pattern: pattern, pageSize: pageSize,flags: CommandFlags.None);
 
-            RedisValue[] values = await Database.StringGetAsync(keys.ToArray(), CommandFlags.None);
+            RedisValue[] values = await GetDatabase().StringGetAsync(keys.ToArray(), CommandFlags.None);
 			//}
 
 			return values.Where(p=>p.HasValue).Select(p => p.ToString()).ToList();
@@ -328,9 +330,9 @@ namespace Awaken.Utils.Cache
 
             //var db = muxer.GetDatabase();
 
-            var keys = server.Keys(Database.Database, pattern: pattern, pageSize: pageSize, flags: CommandFlags.None);
+            var keys = server.Keys(GetDatabase().Database, pattern: pattern, pageSize: pageSize, flags: CommandFlags.None);
 
-            RedisValue[] values = await Database.StringGetAsync(keys.ToArray(), CommandFlags.None);
+            RedisValue[] values = await GetDatabase().StringGetAsync(keys.ToArray(), CommandFlags.None);
             //}
 
             return values.Where(p => p.HasValue)
@@ -355,7 +357,7 @@ namespace Awaken.Utils.Cache
             //{
             //    var db = muxer.GetDatabase();
 
-                return await Database.KeyDeleteAsync(key);
+                return await GetDatabase().KeyDeleteAsync(key);
             //}
 
         }
