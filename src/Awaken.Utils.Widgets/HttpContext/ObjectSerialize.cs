@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 
 namespace Awaken.Utils.Widgets
@@ -17,7 +18,7 @@ namespace Awaken.Utils.Widgets
 		/// <typeparam name="T"></typeparam>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		public static async Task<string> SerializeStringAsync<T>(T value)
+		public static async Task<string> SerializeAsync<T>(T value)
 		{
 			return await Task.Run(() => JsonConvert.SerializeObject(value));
 		}
@@ -28,7 +29,7 @@ namespace Awaken.Utils.Widgets
 		/// <typeparam name="T"></typeparam>
 		/// <param name="valueJson"></param>
 		/// <returns></returns>
-		public static async Task<T> DeserializeObjectAsync<T>(string valueJson)
+		public static async Task<T> DeserializeAsync<T>(string valueJson)
 		{
 			return await Task.Run(() => JsonConvert.DeserializeObject<T>(valueJson));
 		}
@@ -42,24 +43,26 @@ namespace Awaken.Utils.Widgets
 		{
 			//in .net core 2.0
 			//System.Runtime.Serialization.Formatters.Binary
+			ArraySegment<byte> bytes;
 
-			//ArraySegment<byte> bytearr;
+			using (MemoryStream ms = new MemoryStream())
+			{
+				var formatter = new BinaryFormatter();
 
-			//using (MemoryStream ms = new MemoryStream())
-			//{
-			//	var formatter = new BinaryFormatter();
+				formatter.Serialize(ms, value);
 
-			//	formatter.Serialize(ms, t);
+				ms.TryGetBuffer(out bytes);
+			}
 
-			//	ms.TryGetBuffer(out bytearr);
-			//}
-			//return bytearr.Array;
+			return bytes.Array;
 
+            /* 效率低
 			var json = await SerializeStringAsync(value);
 
 			byte[] val = System.Text.Encoding.UTF8.GetBytes(json);
 
 			return val;
+            */
 
 		}
 
@@ -68,17 +71,20 @@ namespace Awaken.Utils.Widgets
 		/// </summary>
 		/// <param name="bytes"></param>         
 		/// <returns></returns> 
-		public static async Task<T> BytesToObjectAsync<T>(byte[] bytes)
+		public static async Task<T> ToObjectAsync<T>(byte[] bytes)
 		{
-			//using (MemoryStream ms = new MemoryStream(Bytes))
-			//{
-			//	IFormatter formatter = new BinaryFormatter(); return formatter.Deserialize(ms);
-			//}
+            using (var ms = new MemoryStream(bytes))
+            {
+                var formatter = new BinaryFormatter();
 
+                return (T)formatter.Deserialize(ms);                
+            }
+
+            /* 效率低
 			var json = System.Text.Encoding.UTF8.GetString(bytes);
 
-			return await DeserializeObjectAsync<T>(json);
+			return await DeserializeObjectAsync<T>(json);*/
 
-		}
-	}
+        }
+    }
 }
