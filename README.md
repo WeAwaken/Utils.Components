@@ -6,14 +6,14 @@
 -- 1: add to "appsettings.json" of project
 `` "Redis": "139.196.148.7:6379,allowAdmin=true,password=3W1e#r&f,abortConnect=false", //abortConnect=false ``
 -- 2: add to Startup.cs > Methods ConfigureServices() , DI Singleton:"IRedisCache"
-``
+```
 services.AddRedisCache(options =>
         {
             options.ConnectionString = Configuration.GetValue<string>("Redis");
         });
-``
+```
 -- 3: insert and read 
-``
+```
   [Route("[controller]")]
   public class DemoController: Controller{  
     private readonly IRedisCache _cache;    
@@ -28,5 +28,5 @@ services.AddRedisCache(options =>
       return _cache.Get("foo")
     }
   }
-``
+```
 
