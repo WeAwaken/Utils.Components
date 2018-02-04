@@ -244,9 +244,7 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 
+# Awaken Project Setting
+/.private
 /Database
-/Shotcut
-/Origin
-/libraries
-html/
 logs/
