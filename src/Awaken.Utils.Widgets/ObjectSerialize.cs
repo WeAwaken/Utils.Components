@@ -34,12 +34,13 @@ namespace Awaken.Utils.Widgets
 			return await Task.Run(() => JsonConvert.DeserializeObject<T>(valueJson));
 		}
 
-		/// <summary> 
-		/// 将一个对象序列化，返回一个byte[]         
-		/// </summary> 
-		/// <param name="value">序列化的对象</param>         
-		/// <returns></returns> 
-		public static async Task<byte[]> ToBytesAsync<T>(T value)
+        /// <summary> 
+        /// 将一个对象序列化，返回一个byte[] 
+        /// 注意：对象必须带[Serialize] 属性
+        /// </summary> 
+        /// <param name="value">序列化的对象</param>         
+        /// <returns></returns> 
+        public static async Task<byte[]> ToBytesAsync<T>(T value)
 		{
 			//in .net core 2.0
 			//System.Runtime.Serialization.Formatters.Binary
@@ -67,7 +68,7 @@ namespace Awaken.Utils.Widgets
 		}
 
 		/// <summary> 
-		/// 将一个序列化后的byte[]数组还原         
+		/// 将一个序列化后的byte[]数组还原成对象        
 		/// </summary>
 		/// <param name="bytes"></param>         
 		/// <returns></returns> 
