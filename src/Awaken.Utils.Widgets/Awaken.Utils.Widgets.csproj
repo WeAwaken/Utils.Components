@@ -4,8 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>AleXiao</Authors>
     <Company>Awaken</Company>
-    <Description>Awaken.Utils.Widgets</Description>
-    <Version>1.1.5</Version>
+    <Description>Use MessagePackSerializer Object to byte[]</Description>
+    <Version>1.1.6</Version>
     <Copyright>Awaken©2018</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
