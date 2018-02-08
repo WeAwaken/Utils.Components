@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Awaken.Utils.Tests
 {
-    [Serializable]
+    
     public class Room
     {
         public string Id { get; set; }

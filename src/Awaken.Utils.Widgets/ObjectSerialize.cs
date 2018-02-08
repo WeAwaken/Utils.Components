@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MsgPack.Serialization;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Runtime.Serialization;
@@ -38,26 +39,22 @@ namespace Awaken.Utils.Widgets
         /// 将一个对象序列化，返回一个byte[] 
         /// 注意：对象必须带[Serialize] 属性
         /// </summary> 
-        /// <param name="value">序列化的对象</param>         
+        /// <param name="obj">序列化的对象</param>         
         /// <returns></returns> 
-        public static async Task<byte[]> ToBytesAsync<T>(T value)
+        public static async Task<byte[]> ToBytesAsync<T>(T obj)
 		{
-			//in .net core 2.0
-			//System.Runtime.Serialization.Formatters.Binary
-			ArraySegment<byte> bytes;
+            //MsgPack 序列化 
+            var serializer = MessagePackSerializer.Get<T>(); //SerializationContext.Default.GetSerializer<T>();
 
-			using (MemoryStream ms = new MemoryStream())
-			{
-				var formatter = new BinaryFormatter();
+            using (var stream = new MemoryStream()) {
+                await serializer.PackAsync(stream, obj);
+                return stream.ToArray();
+            }
 
-				formatter.Serialize(ms, value);
+            //var bytes = await serializer.PackSingleObjectAsync(value);
+                
 
-				ms.TryGetBuffer(out bytes);
-			}
-
-			return bytes.Array;
-
-            /* 效率低
+            /* 效率低 System.Runtime.Serialization.Formatters.Binary
 			var json = await SerializeStringAsync(value);
 
 			byte[] val = System.Text.Encoding.UTF8.GetBytes(json);
@@ -65,20 +62,20 @@ namespace Awaken.Utils.Widgets
 			return val;
             */
 
-		}
+        }
 
-		/// <summary> 
-		/// 将一个序列化后的byte[]数组还原成对象        
-		/// </summary>
-		/// <param name="bytes"></param>         
-		/// <returns></returns> 
-		public static async Task<T> ToObjectAsync<T>(byte[] bytes)
+        /// <summary> 
+        /// 将一个序列化后的byte[]数组还原成对象        
+        /// </summary>
+        /// <param name="bytes"></param>         
+        /// <returns></returns> 
+        public static async Task<T> ToObjectAsync<T>(byte[] bytes)
 		{
-            using (var ms = new MemoryStream(bytes))
-            {
-                var formatter = new BinaryFormatter();
+            var serializer = MessagePackSerializer.Get<T>();            
 
-                return (T)formatter.Deserialize(ms);                
+            using (var stream = new MemoryStream(bytes))
+            {
+                return await serializer.UnpackAsync(stream);
             }
 
             /* 效率低
