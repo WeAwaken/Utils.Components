@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace Awaken.Utils.Widgets
 {
     /// <summary>
-    /// return {"error":"description for developer","message":" description for user"}
+    /// return {"error":"description for developer","error_description":" description for user"}
     /// </summary>
     public class AppException :Exception
     {
@@ -75,7 +75,9 @@ namespace Awaken.Utils.Widgets
             [Description("Request Timeout")]
             RequestTimeout = 408,
 
-
+            /// <summary>
+            /// 应用程序出错了
+            /// </summary>
             [Description("Application Error")]
             ApplicationError = 500,
 

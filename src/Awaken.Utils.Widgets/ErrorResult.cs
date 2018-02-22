@@ -4,8 +4,11 @@ using System.Text;
 
 namespace Awaken.Utils.Widgets
 {
+    /// <summary>
+    /// 错误结果
+    /// </summary>
     public class ErrorResult
-    {
+    {        
 	    public ErrorResult()
         {
             Error = AppException.ErrorCode.BadRequest.GetDescription();
