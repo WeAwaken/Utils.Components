@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace Awaken.Utils.Widgets
 {
     /// <summary>
-    /// return {"error":"description for developer","error_description":" description for user"}
+    /// return {"error":"for developer","message":" for user"}
     /// </summary>
     public class AppException :Exception
     {

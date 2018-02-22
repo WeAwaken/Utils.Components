@@ -44,7 +44,7 @@ namespace Awaken.Utils.Widgets
 
         public override string ToString()
         {
-            return string.Format("{{error:'{0}', error_description:'{1}'}}",
+            return string.Format("{{error:'{0}', message:'{1}'}}",
                 Error,
                 Message);
         }
