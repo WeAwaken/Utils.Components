@@ -40,7 +40,7 @@ namespace Awaken.Utils.Widgets
         public enum ErrorCode
         {
             /// <summary>
-            /// 400 参数缺失或格式错误
+            /// 400 请求参数缺失或格式错误
             /// </summary>
             [Description("Invalid Parameters")]
             BadRequest = 400,
@@ -76,7 +76,7 @@ namespace Awaken.Utils.Widgets
             RequestTimeout = 408,
 
             /// <summary>
-            /// 应用程序出错了
+            /// 应用程序出错 
             /// </summary>
             [Description("Application Error")]
             ApplicationError = 500,
